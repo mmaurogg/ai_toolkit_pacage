@@ -1,39 +1,57 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# AI Toolkit
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+AI Toolkit es una librería para Flutter/Dart que proporciona herramientas básicas de inteligencia artificial. Actualmente, incluye una funcionalidad para realizar análisis de sentimientos en texto.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+## Características
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+- **Análisis de Sentimientos**: Determina si un texto tiene un sentimiento positivo, negativo o neutral basado en palabras clave y su relevancia.
 
-## Features
+## Instalación
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Agrega la dependencia en tu archivo `pubspec.yaml`:
 
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  ai_toolkit:
+    git:
+      url: https://github.com/tu_usuario/ai_toolkit.git
 ```
 
-## Additional information
+Luego, ejecuta:
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+```bash
+flutter pub get
+```
+
+## Uso
+
+A continuación, se muestra un ejemplo básico de cómo usar la funcionalidad de análisis de sentimientos:
+
+```dart
+import 'package:ai_toolkit/ai_toolkit.dart';
+
+void main() {
+  final aiToolkit = AIToolkit();
+
+  final text = "Este producto es excelente y maravilloso";
+  final sentiment = aiToolkit.analyzeSentiment(text);
+
+  if (sentiment > 0) {
+    print("El sentimiento es positivo");
+  } else if (sentiment < 0) {
+    print("El sentimiento es negativo");
+  } else {
+    print("El sentimiento es neutral");
+  }
+}
+```
+
+## Cómo funciona
+
+El análisis de sentimientos utiliza una lista de palabras positivas y negativas para evaluar el texto. Además, puede ponderar la relevancia de las palabras utilizando el algoritmo **TF-IDF** si se proporciona un conjunto de documentos de referencia.
+
+Si no se proporcionan documentos, la librería utiliza un conjunto de documentos predeterminados para calcular la relevancia de las palabras.
+
+## Contribuciones
+
+¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar el análisis de sentimientos o agregar nuevas funcionalidades, no dudes en abrir un issue o enviar un pull request.
